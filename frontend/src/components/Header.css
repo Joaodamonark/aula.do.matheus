@@ -1,0 +1,123 @@
+/* Header.css - Mobile First */
+
+.header {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 15px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #667eea;
+}
+
+/* Navigation - Hidden on Mobile */
+.nav {
+  display: none;
+  gap: 20px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: #667eea;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  padding: 12px 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #5568d3;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* Tablet - 768px */
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    gap: 0;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .header-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    flex: none;
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+/* Desktop - 1024px */
+@media (min-width: 1024px) {
+  .header-container {
+    padding: 15px 40px;
+  }
+
+  .nav {
+    gap: 30px;
+  }
+
+  .logo h1 {
+    font-size: 28px;
+  }
+}

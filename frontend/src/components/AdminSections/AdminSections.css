@@ -1,0 +1,295 @@
+/* AdminSections.css - Mobile First */
+
+.admin-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section h2 {
+  font-size: 20px;
+  margin: 0 0 20px 0;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+/* Section Controls */
+.section-controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table thead {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #ddd;
+}
+
+.admin-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-ativo {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-suspenso {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-bloqueado {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-disponivel {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-vendido {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.status-reservado {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-pendente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-concluida {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-cancelada {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Buttons */
+.btn-action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0 4px;
+  white-space: nowrap;
+}
+
+.btn-view {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-view:hover {
+  background-color: #5568d3;
+}
+
+.btn-suspend {
+  background-color: #ff9800;
+  color: white;
+}
+
+.btn-suspend:hover {
+  background-color: #e68900;
+}
+
+.btn-block {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-block:hover {
+  background-color: #da190b;
+}
+
+.btn-remove {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-remove:hover {
+  background-color: #da190b;
+}
+
+/* Stats Container */
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.stat-value {
+  margin: 10px 0 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Avaliações Container */
+.avaliacoes-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.avaliacao-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+}
+
+.avaliacao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.avaliacao-header h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.avaliacao-rating {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}
+
+.avaliacao-comment {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.avaliacao-date {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Loading e No Data */
+.loading,
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Tablet - 768px */
+@media (min-width: 768px) {
+  .admin-section {
+    padding: 25px;
+  }
+
+  .admin-section h2 {
+    font-size: 24px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .admin-table {
+    font-size: 15px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 15px;
+  }
+
+  .avaliacoes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop - 1024px */
+@media (min-width: 1024px) {
+  .admin-section {
+    padding: 30px;
+  }
+
+  .admin-section h2 {
+    font-size: 28px;
+  }
+}
