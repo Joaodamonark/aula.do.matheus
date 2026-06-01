@@ -57,7 +57,7 @@ const carros = [
     ano: 2019,
     quilometragem: 68000,
     combustivel: 'Flex',
-    preco: 730.000,
+    preco: 730000,
     status: 'Disponível',
     descricao: 'Compacto econômico ideal para uso diário na cidade.',
     imagem: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
