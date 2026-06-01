@@ -4,24 +4,26 @@ const carros = [
     marca: 'Toyota',
     modelo: 'Corolla',
     ano: 2021,
-    quilometragem: 42000,
+      quilometragem: 42000,
     combustivel: 'Flex',
-    preco: 95000,
-    status: 'Disponível',
-    descricao: 'Sedã confortável e econômico com tecnologia moderna.',
-    imagem: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+      preco: 95000,
+      status: 'Disponível',
+      descricao: 'Sedã confortável e econômico com tecnologia moderna.',
+    imagem: 'https://images.unsplash.com/photo-1549921296-3e4ef89cfb98?auto=format&fit=crop&w=1200&q=80',
+    artigo: 'https://autoesporte.globo.com/servicos/noticia/2021/02/toyota-corolla-2021-veja-se-o-seda-medio-e-realmente-economico-nas-versoes-xei-altis-e-hybrid.ghtml',
   },
   {
     id: '2',
     marca: 'Honda',
     modelo: 'Civic',
     ano: 2020,
-    quilometragem: 55000,
+      quilometragem: 55000,
     combustivel: 'Gasolina',
-    preco: 98000,
-    status: 'Disponível',
-    descricao: 'Carro esportivo e elegante com direção ágil e interior premium.',
-    imagem: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80',
+      preco: 98000,
+      status: 'Disponível',
+      descricao: 'Carro esportivo e elegante com direção ágil e interior premium.',
+    imagem: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+    artigo: 'https://www.autodata.com.br/noticias/2019/08/07/linha-2020-do-honda-civic-tem-nova-versao-de-entrada/29383/',
   },
   {
     id: '3',
@@ -45,16 +47,17 @@ const carros = [
     preco: 170000,
     status: 'Disponível',
     descricao: 'SUV moderno com conectividade inteligente e design robusto.',
-    imagem: 'https://images.unsplash.com/photo-1549921296-3e4ef89cfb98?auto=format&fit=crop&w=1200&q=80',
+    imagem: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80',
+    artigo: 'https://www.automaistv.com.br/destaque/volkswagen-t-cross-2023-aumento-preco/',
   },
   {
     id: '5',
-    marca: 'Ford',
-    modelo: 'Ka',
+    marca: 'Porsche',
+    modelo: 'Panameira',
     ano: 2019,
     quilometragem: 68000,
     combustivel: 'Flex',
-    preco: 52000,
+    preco: 730.000,
     status: 'Disponível',
     descricao: 'Compacto econômico ideal para uso diário na cidade.',
     imagem: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
@@ -94,9 +97,11 @@ const renderCars = (lista) => {
   carsGrid.innerHTML = lista
     .map(
       (carro) => `
-        <article class="car-card">
+        <article class="car-card" data-id="${carro.id}" tabindex="0">
           <div class="car-image">
-            <img src="${carro.imagem || 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80'}" alt="${carro.marca} ${carro.modelo}" />
+            ${carro.artigo
+              ? `<a href="${carro.artigo}" target="_blank" rel="noopener noreferrer"><img src="${carro.imagem || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'}" alt="${carro.marca} ${carro.modelo}" /></a>`
+              : `<img src="${carro.imagem || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'}" alt="${carro.marca} ${carro.modelo}" />`}
           </div>
           <div class="car-body">
             <div class="car-title">${carro.marca} ${carro.modelo}</div>
@@ -319,3 +324,32 @@ cancelSell.addEventListener('click', handleCancelSell);
 updateAuthUI();
 initNavigation();
 renderCars(carros);
+
+// Ao clicar em um card, abrir a página de detalhes
+carsGrid.addEventListener('click', (e) => {
+  // se clicou em um link (imagem/artigo), deixa o <a> tratar o evento
+  if (e.target.closest('a')) return;
+  // ignora cliques no botão Comprar
+  if (e.target.closest('button')) return;
+  const card = e.target.closest('.car-card');
+  if (!card) return;
+  const id = card.dataset.id;
+  const found = carros.find((c) => c.id === id);
+  if (!found) return;
+  localStorage.setItem('carsellSelectedCar', JSON.stringify(found));
+  window.location.href = 'car.html';
+});
+
+// também permite abrir com Enter quando focado (acessibilidade)
+carsGrid.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+  // se o foco estiver em um link, deixa o Enter seguir o link
+  if (e.target.closest('a')) return;
+  const card = e.target.closest('.car-card');
+  if (!card) return;
+  const id = card.dataset.id;
+  const found = carros.find((c) => c.id === id);
+  if (!found) return;
+  localStorage.setItem('carsellSelectedCar', JSON.stringify(found));
+  window.location.href = 'car.html';
+});

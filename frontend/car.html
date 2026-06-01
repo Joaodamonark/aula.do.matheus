@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarSell | Detalhe do Anúncio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span>🚗</span>
+          <div>
+            <h1>CarSell</h1>
+            <p>Detalhes do anúncio</p>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#catalogo">Catálogo</a>
+          <a href="vender.html">Vender</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="car-detail">
+        <div id="carDetailContainer"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>CarSell © 2026</p>
+      </div>
+    </footer>
+
+    <script>
+      const container = document.getElementById('carDetailContainer');
+      const raw = localStorage.getItem('carsellSelectedCar');
+      if (!raw) {
+        container.innerHTML = `<div class="card"><p>Anúncio não encontrado. <a href="index.html">Voltar</a></p></div>`;
+        throw new Error('No selected car');
+      }
+
+      const car = JSON.parse(raw);
+
+      container.innerHTML = `
+        <div class="card car-detail-card">
+          <div class="car-detail-grid">
+            <div class="car-detail-image">
+              <img src="${car.imagem}" alt="${car.marca} ${car.modelo}" />
+            </div>
+            <div class="car-detail-body">
+              <h2>${car.marca} ${car.modelo}</h2>
+              <div class="car-badges">
+                <span class="badge">${car.ano}</span>
+                <span class="badge">${car.combustivel}</span>
+                <span class="badge">${car.status}</span>
+              </div>
+              <p class="car-description">${car.descricao}</p>
+              <p><strong>Quilometragem:</strong> ${car.quilometragem.toLocaleString()} km</p>
+              <p><strong>Preço:</strong> ${car.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+              <p><strong>Anunciante:</strong> ${car.anunciante || '—'}</p>
+              <div class="form-actions">
+                <a href="${car.artigo || car.imagem}" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver link da foto/artigo</a>
+                <a href="index.html" class="btn-primary">Voltar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    </script>
+  </body>
+</html>
