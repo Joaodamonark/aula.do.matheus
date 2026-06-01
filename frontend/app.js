@@ -79,6 +79,13 @@ const loginNav = document.getElementById('loginNav');
 
 let users = JSON.parse(localStorage.getItem('carsellUsers') || '[]');
 let currentUser = JSON.parse(localStorage.getItem('carsellCurrentUser') || 'null');
+// Se houver carros anunciados na página de vender, integraremos aqui
+const stagedCars = JSON.parse(localStorage.getItem('carsellStagedCars') || '[]');
+if (Array.isArray(stagedCars) && stagedCars.length) {
+  // adiciona no início para priorizar anúncios recentes
+  stagedCars.forEach((c) => carros.unshift(c));
+  localStorage.removeItem('carsellStagedCars');
+}
 
 const formatPrice = (value) =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });

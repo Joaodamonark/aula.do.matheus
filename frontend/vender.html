@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarSell | Vender</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span>🚗</span>
+          <div>
+            <h1>CarSell</h1>
+            <p>Anuncie seu carro</p>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#catalogo">Catálogo</a>
+          <a href="login.html">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="seller-page">
+        <div class="card form-card seller-page-card">
+          <h2>Anunciar meu carro</h2>
+          <form id="sellFormPage">
+            <div class="input-group">
+              <label for="carBrand">Marca</label>
+              <input type="text" id="carBrand" placeholder="Toyota" required />
+            </div>
+            <div class="input-group">
+              <label for="carModel">Modelo</label>
+              <input type="text" id="carModel" placeholder="Corolla" required />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="carYear">Ano</label>
+                <input type="number" id="carYear" placeholder="2021" min="1900" max="2099" required />
+              </div>
+              <div class="input-group">
+                <label for="carMileage">Quilometragem</label>
+                <input type="number" id="carMileage" placeholder="42000" min="0" required />
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="carFuel">Combustível</label>
+              <input type="text" id="carFuel" placeholder="Flex" required />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="carPrice">Preço</label>
+                <input type="number" id="carPrice" placeholder="95000" min="0" required />
+              </div>
+              <div class="input-group">
+                <label for="carImage">URL da imagem</label>
+                <input type="url" id="carImage" placeholder="https://..." />
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="carDescription">Descrição</label>
+              <textarea id="carDescription" placeholder="Descreva o estado, opcionais e diferenciais." rows="4" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Anunciar</button>
+              <a href="index.html" class="btn-secondary">Voltar</a>
+            </div>
+            <p id="sellPageMessage" class="form-message"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>CarSell © 2026</p>
+      </div>
+    </footer>
+
+    <script>
+      // Envia o anúncio para o index via localStorage; index.js consome e publica
+      const sellFormPage = document.getElementById('sellFormPage');
+      const sellPageMessage = document.getElementById('sellPageMessage');
+
+      sellFormPage.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const marca = document.getElementById('carBrand').value.trim();
+        const modelo = document.getElementById('carModel').value.trim();
+        const ano = parseInt(document.getElementById('carYear').value, 10);
+        const quilometragem = parseInt(document.getElementById('carMileage').value, 10);
+        const combustivel = document.getElementById('carFuel').value.trim();
+        const preco = parseFloat(document.getElementById('carPrice').value);
+        const imagem = document.getElementById('carImage').value.trim();
+        const descricao = document.getElementById('carDescription').value.trim();
+
+        if (!marca || !modelo || !ano || !quilometragem || !combustivel || !preco || !descricao) {
+          sellPageMessage.textContent = 'Preencha todos os campos obrigatórios.';
+          return;
+        }
+
+        const novoCarro = {
+          id: Date.now().toString(),
+          marca,
+          modelo,
+          ano,
+          quilometragem,
+          combustivel,
+          preco,
+          status: 'Disponível',
+          descricao,
+          imagem: imagem || 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+          anunciante: JSON.parse(localStorage.getItem('carsellCurrentUser') || 'null')?.name || 'Anunciante',
+        };
+
+        const staged = JSON.parse(localStorage.getItem('carsellStagedCars') || '[]');
+        staged.push(novoCarro);
+        localStorage.setItem('carsellStagedCars', JSON.stringify(staged));
+
+        sellPageMessage.textContent = 'Anúncio salvo! Você será redirecionado.';
+        setTimeout(() => (window.location.href = 'index.html'), 900);
+      });
+    </script>
+  </body>
+</html>
