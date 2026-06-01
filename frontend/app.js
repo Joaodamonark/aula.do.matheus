@@ -285,11 +285,14 @@ const handleCancelSell = () => {
 
 const initNavigation = () => {
   navLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const section = link.dataset.section;
-      showSection(section);
-    });
+    const section = link.dataset.section;
+    if (section) {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        showSection(section);
+      });
+    }
+    // se não houver data-section, permite o comportamento padrão (navegar para href)
   });
 
   actionButtons.forEach((button) => {
