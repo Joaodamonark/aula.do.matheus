@@ -9,7 +9,7 @@ const carros = [
       preco: 95000,
       status: 'Disponível',
       descricao: 'Sedã confortável e econômico com tecnologia moderna.',
-    imagem: 'https://images.unsplash.com/photo-1549921296-3e4ef89cfb98?auto=format&fit=crop&w=1200&q=80',
+    imagem: 'images/corolla.jpg',
     artigo: 'https://autoesporte.globo.com/servicos/noticia/2021/02/toyota-corolla-2021-veja-se-o-seda-medio-e-realmente-economico-nas-versoes-xei-altis-e-hybrid.ghtml',
   },
   {
@@ -22,7 +22,7 @@ const carros = [
       preco: 98000,
       status: 'Disponível',
       descricao: 'Carro esportivo e elegante com direção ágil e interior premium.',
-    imagem: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+    imagem: 'images/civic.jpg',
     artigo: 'https://www.autodata.com.br/noticias/2019/08/07/linha-2020-do-honda-civic-tem-nova-versao-de-entrada/29383/',
   },
   {
@@ -47,7 +47,7 @@ const carros = [
     preco: 170000,
     status: 'Disponível',
     descricao: 'SUV moderno com conectividade inteligente e design robusto.',
-    imagem: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80',
+    imagem: 'images/tcross.jpg',
     artigo: 'https://www.automaistv.com.br/destaque/volkswagen-t-cross-2023-aumento-preco/',
   },
   {
