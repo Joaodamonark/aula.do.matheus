@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarSell | Revenda de Carros</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span>🚗</span>
+          <div>
+            <h1>CarSell</h1>
+            <p>Revenda de carros em HTML, CSS e JS</p>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <a href="#" class="nav-link" data-section="home">Home</a>
+          <a href="#" class="nav-link" data-section="catalogo">Catálogo</a>
+          <a href="#" class="nav-link" data-section="sell">Vender</a>
+          <a href="#" class="nav-link" data-section="login" id="loginNav">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Encontre seu próximo carro</p>
+            <h2>Revenda de carros com estilo, confiança e preço justo.</h2>
+            <p class="hero-copy">
+              Busque por marca, modelo, ano e faixa de preço. Tudo em uma página leve e rápida.
+            </p>
+            <button class="btn-primary" data-section="catalogo">Ver catálogo</button>
+          </div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="Carro à venda" />
+          </div>
+        </div>
+      </section>
+
+      <section class="search-section container" id="catalogo">
+        <h2>Filtrar carros</h2>
+        <form id="filtersForm" class="filters-form">
+          <input type="text" id="filter-brand" placeholder="Marca" />
+          <input type="text" id="filter-model" placeholder="Modelo" />
+          <input type="number" id="filter-year" placeholder="Ano" min="1900" max="2099" />
+          <input type="number" id="filter-min-price" placeholder="Preço mínimo" min="0" />
+          <input type="number" id="filter-max-price" placeholder="Preço máximo" min="0" />
+          <div class="actions">
+            <button type="submit" class="btn-primary">Buscar</button>
+            <button type="button" id="resetFilters" class="btn-secondary">Limpar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="cars-section container" id="catalogo-list">
+        <div class="section-header">
+          <h2>Carros disponíveis</h2>
+          <p id="carsCount">0 carros encontrados</p>
+        </div>
+        <div id="carsGrid" class="cars-grid"></div>
+      </section>
+
+      <section class="auth-section container hidden" id="loginSection">
+        <div class="section-header">
+          <h2>Login e cadastro</h2>
+          <p>Faça login para anunciar seu carro ou cadastre-se em poucos segundos.</p>
+        </div>
+        <div class="auth-grid">
+          <form id="loginForm" class="card form-card">
+            <h3>Entrar</h3>
+            <div class="input-group">
+              <label for="userName">Nome</label>
+              <input type="text" id="userName" placeholder="Seu nome" />
+            </div>
+            <div class="input-group">
+              <label for="userEmail">Email</label>
+              <input type="email" id="userEmail" placeholder="seu@email.com" required />
+            </div>
+            <div class="input-group">
+              <label for="userPassword">Senha</label>
+              <input type="password" id="userPassword" placeholder="Senha" required />
+            </div>
+            <div class="form-actions">
+              <button type="button" id="registerButton" class="btn-secondary">Cadastrar</button>
+              <button type="submit" class="btn-primary">Login</button>
+            </div>
+            <p id="authMessage" class="form-message"></p>
+          </form>
+
+          <div class="card auth-info">
+            <h3>Por que criar uma conta?</h3>
+            <ul>
+              <li>Anuncie seus carros com facilidade.</li>
+              <li>Gerencie seus anúncios a qualquer momento.</li>
+              <li>Tenha um histórico de vendas sempre disponível.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="seller-section container hidden" id="sellSection">
+        <div class="section-header">
+          <h2>Anunciar meu carro</h2>
+          <p>Informe os dados do veículo e publique seu anúncio para todos os visitantes.</p>
+        </div>
+        <div class="card form-card">
+          <form id="sellForm">
+            <div class="input-group">
+              <label for="carBrand">Marca</label>
+              <input type="text" id="carBrand" placeholder="Toyota" required />
+            </div>
+            <div class="input-group">
+              <label for="carModel">Modelo</label>
+              <input type="text" id="carModel" placeholder="Corolla" required />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="carYear">Ano</label>
+                <input type="number" id="carYear" placeholder="2021" min="1900" max="2099" required />
+              </div>
+              <div class="input-group">
+                <label for="carMileage">Quilometragem</label>
+                <input type="number" id="carMileage" placeholder="42000" min="0" required />
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="carFuel">Combustível</label>
+              <input type="text" id="carFuel" placeholder="Flex" required />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="carPrice">Preço</label>
+                <input type="number" id="carPrice" placeholder="95000" min="0" required />
+              </div>
+              <div class="input-group">
+                <label for="carImage">URL da imagem</label>
+                <input type="url" id="carImage" placeholder="https://..." />
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="carDescription">Descrição</label>
+              <textarea id="carDescription" placeholder="Descreva o estado, opcionais e diferenciais." rows="4" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Anunciar carro</button>
+              <button type="button" id="cancelSell" class="btn-secondary">Cancelar</button>
+            </div>
+            <p id="sellMessage" class="form-message"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="about-section container">
+        <div class="about-card">
+          <h3>Compra segura</h3>
+          <p>Todos os carros listados têm informações claras de ano, quilometragem e combustível.</p>
+        </div>
+        <div class="about-card">
+          <h3>Sem dependências</h3>
+          <p>Site construído em HTML, CSS e JavaScript puro. Sem React, sem Expo.</p>
+        </div>
+        <div class="about-card">
+          <h3>Rápido e responsivo</h3>
+          <p>Design adaptado para mobile, tablet e desktop.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contato">
+      <div class="container footer-content">
+        <p>CarSell © 2026 • Contato: contato@carsell.com.br</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,388 @@
+/* Global */
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #222;
+  background: #f4f5f8;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f5f8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.brand span {
+  font-size: 32px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-link,
+.header-button {
+  color: #4a5568;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  padding: 8px 10px;
+}
+
+.nav-link:hover,
+.header-button:hover {
+  color: #2b6cb0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 70px 0;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 30px;
+  align-items: center;
+}
+
+.hero .eyebrow {
+  margin: 0 0 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero h2 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  max-width: 640px;
+}
+
+.hero-copy {
+  max-width: 600px;
+  margin: 0 0 24px;
+  font-size: 1rem;
+  opacity: 0.92;
+}
+
+.btn-primary,
+.btn-secondary {
+  border: none;
+  border-radius: 10px;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-primary {
+  background: #2b6cb0;
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #edf2f7;
+  color: #2d3748;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 28px;
+  display: block;
+  object-fit: cover;
+}
+
+.search-section,
+.auth-section,
+.seller-section,
+.about-section {
+  padding: 36px 0;
+}
+
+.search-section {
+  background: white;
+  margin-top: -36px;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 28px 24px;
+}
+
+.search-section h2,
+.section-header h2 {
+  margin: 0 0 18px;
+  font-size: 1.6rem;
+}
+
+.filters-form,
+.form-card {
+  display: grid;
+  gap: 16px;
+}
+
+.filters-form input,
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f7fafc;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.actions,
+.form-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.section-header p {
+  margin: 0;
+  color: #4a5568;
+}
+
+.cars-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.car-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.car-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.car-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.car-title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.car-badges,
+.input-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #e2e8f0;
+  color: #2d3748;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+}
+
+.car-description {
+  margin: 0;
+  color: #4a5568;
+  flex: 1;
+}
+
+.car-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.car-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2b6cb0;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.form-card h3,
+.auth-info h3 {
+  margin-top: 0;
+}
+
+.auth-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.input-group {
+  display: grid;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.form-message {
+  color: #2b6cb0;
+  margin: 0;
+  min-height: 20px;
+}
+
+.about-section {
+  display: grid;
+  gap: 24px;
+}
+
+.about-card {
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.site-footer {
+  background: #1a202c;
+  color: #cbd5e1;
+  padding: 28px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .filters-form {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: end;
+  }
+
+  .actions {
+    grid-column: span 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cars-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .auth-grid {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cars-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
