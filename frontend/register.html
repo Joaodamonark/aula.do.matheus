@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarSell | Cadastro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span>🚗</span>
+          <div>
+            <h1>CarSell</h1>
+            <p>Cadastro de usuário</p>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#catalogo">Catálogo</a>
+          <a href="vender.html">Vender</a>
+          <a href="login.html">Login</a>
+          <button type="button" class="theme-switcher" id="themeSwitcher">Modo Escuro</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="auth-page">
+        <div class="card form-card auth-page-card">
+          <h2>Cadastro</h2>
+          <form id="registerFormPage">
+            <div class="input-group">
+              <label for="registerName">Nome completo</label>
+              <input type="text" id="registerName" placeholder="Seu nome" required />
+            </div>
+            <div class="input-group">
+              <label for="registerEmail">Email</label>
+              <input type="email" id="registerEmail" placeholder="seu@email.com" required />
+            </div>
+            <div class="input-group">
+              <label for="registerPassword">Senha</label>
+              <input type="password" id="registerPassword" placeholder="Senha" required />
+            </div>
+            <div class="input-group">
+              <label for="registerPasswordConfirm">Confirme a senha</label>
+              <input type="password" id="registerPasswordConfirm" placeholder="Repita a senha" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Cadastrar</button>
+              <a href="login.html" class="btn-secondary">Já tenho conta</a>
+            </div>
+            <p id="registerAuthMessage" class="form-message"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>CarSell © 2026</p>
+      </div>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script>
+      const registerFormPage = document.getElementById('registerFormPage');
+      const registerAuthMessage = document.getElementById('registerAuthMessage');
+
+      registerFormPage.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('registerName').value.trim();
+        const email = document.getElementById('registerEmail').value.trim().toLowerCase();
+        const password = document.getElementById('registerPassword').value;
+        const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+
+        if (!name || !email || !password || !passwordConfirm) {
+          registerAuthMessage.textContent = 'Preencha todos os campos.';
+          return;
+        }
+
+        if (password !== passwordConfirm) {
+          registerAuthMessage.textContent = 'As senhas não conferem.';
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('carsellUsers') || '[]');
+        const existingUser = users.find((user) => user.email === email);
+
+        if (existingUser) {
+          registerAuthMessage.textContent = 'Este email já está cadastrado. Faça login.';
+          return;
+        }
+
+        const newUser = {
+          id: Date.now().toString(),
+          name,
+          email,
+          password,
+        };
+
+        users.push(newUser);
+        localStorage.setItem('carsellUsers', JSON.stringify(users));
+        localStorage.setItem('carsellCurrentUser', JSON.stringify(newUser));
+        registerAuthMessage.textContent = 'Cadastro realizado! Redirecionando...';
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

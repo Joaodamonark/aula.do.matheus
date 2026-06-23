@@ -62,6 +62,18 @@ const carros = [
     descricao: 'Se você busca o desempenho visceral de um autêntico Porsche, mas não abre mão do conforto, espaço e sofisticação de um sedã de luxo, o Porsche Panamera 2019 é a escolha definitiva.',
     imagem: 'images/2022-porsche-panamera-platinum-edition.jpg',
   },
+  {
+    id: '6',
+    marca: 'Chevrolet',
+    modelo: 'opala',
+    ano: 1981,
+    quilometragem: 100000,
+    combustivel: 'alcool',
+    preco: 40000,
+    status: 'Disponível',
+    descricao: 'O Opala Comodoro 1981 a álcool une o luxo e a robustez clássicos da Chevrolet com a economia e a força do motor movido a etanol. É a escolha ideal para quem busca um carro de colecionador cheio de personalidade e pronto para rodar com o autêntico ronco brasileiro.',
+    imagem: 'images/opala 81 comodoro.jpg',
+  },
 ];
 
 const carsGrid = document.getElementById('carsGrid');

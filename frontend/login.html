@@ -21,6 +21,7 @@
           <a href="index.html">Home</a>
           <a href="index.html#catalogo">Catálogo</a>
           <a href="vender.html">Vender</a>
+          <button type="button" class="theme-switcher" id="themeSwitcher">Modo Escuro</button>
         </nav>
       </div>
     </header>
@@ -40,7 +41,7 @@
             </div>
             <div class="form-actions">
               <button type="submit" class="btn-primary">Entrar</button>
-              <a href="index.html" class="btn-secondary">Voltar</a>
+              <a href="register.html" class="btn-secondary">Cadastrar</a>
             </div>
             <p id="pageAuthMessage" class="form-message"></p>
           </form>
@@ -54,6 +55,7 @@
       </div>
     </footer>
 
+    <script src="theme.js"></script>
     <script>
       // Navegação mínima: tenta usar localStorage para autenticar
       const loginFormPage = document.getElementById('loginFormPage');

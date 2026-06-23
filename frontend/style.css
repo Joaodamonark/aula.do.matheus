@@ -4,6 +4,38 @@
   color: #222;
   background: #f4f5f8;
   line-height: 1.6;
+
+  --bg: #f4f5f8;
+  --surface: #ffffff;
+  --text: #222222;
+  --muted: #4a5568;
+  --border: #e2e8f0;
+  --primary: #2b6cb0;
+  --primary-contrast: #ffffff;
+  --secondary: #edf2f7;
+  --secondary-text: #2d3748;
+  --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --hero-start: #667eea;
+  --hero-end: #764ba2;
+  --footer-bg: #1a202c;
+  --footer-text: #cbd5e1;
+}
+
+[data-theme='dark'] {
+  --bg: #0b1120;
+  --surface: #111827;
+  --text: #e2e8f0;
+  --muted: #cbd5e1;
+  --border: #374151;
+  --primary: #60a5fa;
+  --primary-contrast: #0f172a;
+  --secondary: #1f2937;
+  --secondary-text: #e2e8f0;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --hero-start: #334155;
+  --hero-end: #1e293b;
+  --footer-bg: #020617;
+  --footer-text: #94a3b8;
 }
 
 * {
@@ -13,7 +45,8 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #f4f5f8;
+  background: var(--bg);
+  color: var(--text);
 }
 
 a {
@@ -27,8 +60,27 @@ textarea {
   font: inherit;
 }
 
+.theme-switcher {
+  background: var(--secondary);
+  color: var(--secondary-text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 16px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-switcher:hover {
+  transform: translateY(-1px);
+}
+
 button {
   cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .hidden {
@@ -41,8 +93,8 @@ button {
 }
 
 .site-header {
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -84,7 +136,7 @@ button {
 
 .brand p {
   margin: 4px 0 0;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.3;
 }
@@ -98,7 +150,7 @@ button {
 
 .nav-link,
 .header-button {
-  color: #4a5568;
+  color: var(--muted);
   transition: color 0.2s;
   background: none;
   border: none;
@@ -111,7 +163,7 @@ button {
 }
 
 .hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%);
   color: white;
   padding: 50px 0;
 }
@@ -152,19 +204,20 @@ button {
 }
 
 .btn-primary {
-  background: #2b6cb0;
-  color: white;
+  background: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .btn-primary:hover,
-.btn-secondary:hover {
+.btn-secondary:hover,
+.theme-switcher:hover {
   filter: brightness(1.05);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: #edf2f7;
-  color: #2d3748;
+  background: var(--secondary);
+  color: var(--secondary-text);
 }
 
 .hero-image img {
@@ -182,10 +235,10 @@ button {
 }
 
 .search-section {
-  background: white;
+  background: var(--surface);
   margin-top: -36px;
   border-radius: 24px;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--shadow);
   padding: 28px 24px;
 }
 
@@ -206,9 +259,10 @@ button {
 .input-group textarea {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  background: #f7fafc;
+  background: var(--secondary);
+  color: var(--text);
 }
 
 textarea {
@@ -231,7 +285,7 @@ textarea {
 
 .section-header p {
   margin: 0;
-  color: #4a5568;
+  color: var(--muted);
 }
 
 .cars-grid {
@@ -241,10 +295,10 @@ textarea {
 }
 
 .car-card {
-  background: white;
+  background: var(--surface);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
 }
@@ -259,10 +313,15 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.car-image img:hover {
+  transform: scale(1.03);
 }
 
 .car-body {
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -281,8 +340,8 @@ textarea {
 }
 
 .badge {
-  background: #e2e8f0;
-  color: #2d3748;
+  background: var(--border);
+  color: var(--text);
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 0.88rem;
@@ -290,7 +349,7 @@ textarea {
 
 .car-description {
   margin: 0;
-  color: #4a5568;
+  color: var(--muted);
   flex: 1;
 }
 
@@ -303,14 +362,14 @@ textarea {
 .car-price {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #2b6cb0;
+  color: var(--primary);
 }
 
 .card {
-  background: white;
+  background: var(--surface);
   border-radius: 24px;
   padding: 28px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow);
 }
 
 .form-card h3,
@@ -345,15 +404,15 @@ textarea {
 }
 
 .about-card {
-  background: white;
+  background: var(--surface);
   border-radius: 24px;
   padding: 28px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow);
 }
 
 .site-footer {
-  background: #1a202c;
-  color: #cbd5e1;
+  background: var(--footer-bg);
+  color: var(--footer-text);
   padding: 28px 0;
 }
 
@@ -401,7 +460,7 @@ textarea {
   }
 
   .car-image {
-    height: 240px;
+    height: 220px;
   }
 
   .filters-form {
@@ -424,6 +483,45 @@ textarea {
 
   .auth-grid {
     grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 32px 0;
+  }
+
+  .hero-image {
+    display: none;
+  }
+
+  .search-section,
+  .cars-section,
+  .about-section,
+  .auth-section {
+    padding: 20px 0;
+  }
+
+  .car-image {
+    height: 140px;
+  }
+
+  .car-body {
+    padding: 18px;
+  }
+
+  .cars-grid {
+    gap: 18px;
+  }
+
+  .filters-form {
+    gap: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 12px 16px;
   }
 }
 

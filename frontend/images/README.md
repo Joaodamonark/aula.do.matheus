@@ -5,6 +5,8 @@ Coloque aqui as imagens usadas nos anúncios:
 - tcross.jpg   -> (Volkswagen-T-Cross-750x450.jpg)
 - panameira.jpg-> (2022-porsche-panamera-platinum-edition.jpg)
 - Lamborghini  -> (Lamborghini_Aventador_Genf.jpg)
+- opala        -> (<opala 81 comodoro.jpg>)
+- logo         -> (Logo.png)
 Você pode:
 - Copiar os arquivos de imagem para esta pasta com esses nomes.
 - Ou substituir os caminhos em `frontend/app.js` para URLs externas.
