@@ -9,8 +9,8 @@ const carros = [
       preco: 95000,
       status: 'Disponível',
       descricao: 'Sedã confortável e econômico com tecnologia moderna.',
-    imagem: 'images/corolla.jpg',
-    artigo: 'https://autoesporte.globo.com/servicos/noticia/2021/02/toyota-corolla-2021-veja-se-o-seda-medio-e-realmente-economico-nas-versoes-xei-altis-e-hybrid.ghtml',
+    imagem: 'images/images.jpeg',
+    
   },
   {
     id: '2',
@@ -22,20 +22,20 @@ const carros = [
       preco: 98000,
       status: 'Disponível',
       descricao: 'Carro esportivo e elegante com direção ágil e interior premium.',
-    imagem: 'images/civic.jpg',
-    artigo: 'https://www.autodata.com.br/noticias/2019/08/07/linha-2020-do-honda-civic-tem-nova-versao-de-entrada/29383/',
+    imagem: 'images/honda.jpeg',
+
   },
   {
     id: '3',
-    marca: 'Jeep',
-    modelo: 'Renegade',
+    marca: 'lamborghini',
+    modelo: 'aventador',
     ano: 2022,
     quilometragem: 32000,
-    combustivel: 'Flex',
-    preco: 145000,
+    combustivel: 'Gasolina Premium',
+    preco: 6500000,
     status: 'Disponível',
-    descricao: 'SUV compacto com excelente desempenho em estrada e cidade.',
-    imagem: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80',
+    descricao: 'Com o motor V12 de 6.5 litros, que entrega impressionantes 700 hp, proporcionando uma performance que deixa qualquer um sem fôlego',
+    imagem: 'images/Lamborghini_Aventador_Genf.jpg',
   },
   {
     id: '4',
@@ -47,8 +47,8 @@ const carros = [
     preco: 170000,
     status: 'Disponível',
     descricao: 'SUV moderno com conectividade inteligente e design robusto.',
-    imagem: 'images/tcross.jpg',
-    artigo: 'https://www.automaistv.com.br/destaque/volkswagen-t-cross-2023-aumento-preco/',
+    imagem: 'images/Volkswagen-T-Cross-750x450.jpg',
+   
   },
   {
     id: '5',
@@ -56,11 +56,11 @@ const carros = [
     modelo: 'Panameira',
     ano: 2019,
     quilometragem: 68000,
-    combustivel: 'Flex',
+    combustivel: 'Gasolina Premium',
     preco: 730000,
     status: 'Disponível',
-    descricao: 'Compacto econômico ideal para uso diário na cidade.',
-    imagem: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
+    descricao: 'Se você busca o desempenho visceral de um autêntico Porsche, mas não abre mão do conforto, espaço e sofisticação de um sedã de luxo, o Porsche Panamera 2019 é a escolha definitiva.',
+    imagem: 'images/2022-porsche-panamera-platinum-edition.jpg',
   },
 ];
 
@@ -100,8 +100,8 @@ const renderCars = (lista) => {
         <article class="car-card" data-id="${carro.id}" tabindex="0">
           <div class="car-image">
             ${carro.artigo
-              ? `<a href="${carro.artigo}" target="_blank" rel="noopener noreferrer"><img src="${carro.imagem || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'}" alt="${carro.marca} ${carro.modelo}" /></a>`
-              : `<img src="${carro.imagem || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'}" alt="${carro.marca} ${carro.modelo}" />`}
+              ? `<a href="${carro.artigo}" target="_blank" rel="noopener noreferrer"><img src="${carro.imagem || 'images/images.jpeg'}" alt="${carro.marca} ${carro.modelo}" /></a>`
+              : `<img src="${carro.imagem || 'images/images.jpeg'}" alt="${carro.marca} ${carro.modelo}" />`}
           </div>
           <div class="car-body">
             <div class="car-title">${carro.marca} ${carro.modelo}</div>
@@ -254,7 +254,7 @@ const handleSell = (event) => {
   const quilometragem = parseInt(document.getElementById('carMileage').value, 10);
   const combustivel = document.getElementById('carFuel').value.trim();
   const preco = parseFloat(document.getElementById('carPrice').value);
-  const imagem = document.getElementById('carImage').value.trim();
+  const imagemFile = document.getElementById('carImage').files[0];
   const descricao = document.getElementById('carDescription').value.trim();
 
   if (!marca || !modelo || !ano || !quilometragem || !combustivel || !preco || !descricao) {
@@ -262,24 +262,36 @@ const handleSell = (event) => {
     return;
   }
 
-  const novoCarro = {
-    id: Date.now().toString(),
-    marca,
-    modelo,
-    ano,
-    quilometragem,
-    combustivel,
-    preco,
-    status: 'Disponível',
-    descricao,
-    imagem: imagem || 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
-    anunciante: currentUser.name,
-  };
+  if (!imagemFile) {
+    sellMessage.textContent = 'Selecione uma foto para o carro.';
+    return;
+  }
 
-  carros.unshift(novoCarro);
-  renderCars(carros);
-  sellMessage.textContent = 'Carro anunciado com sucesso!';
-  sellForm.reset();
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const imagemBase64 = e.target.result;
+
+    const novoCarro = {
+      id: Date.now().toString(),
+      marca,
+      modelo,
+      ano,
+      quilometragem,
+      combustivel,
+      preco,
+      status: 'Disponível',
+      descricao,
+      imagem: imagemBase64,
+      anunciante: currentUser.name,
+    };
+
+    carros.unshift(novoCarro);
+    renderCars(carros);
+    sellMessage.textContent = 'Carro anunciado com sucesso!';
+    sellForm.reset();
+    document.getElementById('imagePreview').classList.add('hidden');
+  };
+  reader.readAsDataURL(imagemFile);
 };
 
 const handleCancelSell = () => {
@@ -320,6 +332,25 @@ loginForm.addEventListener('submit', handleLogin);
 registerButton.addEventListener('click', handleRegister);
 sellForm.addEventListener('submit', handleSell);
 cancelSell.addEventListener('click', handleCancelSell);
+
+// Preview de imagem no formulário de venda
+const carImageInput = document.getElementById('carImage');
+const imagePreview = document.getElementById('imagePreview');
+if (carImageInput && imagePreview) {
+  carImageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        imagePreview.src = event.target.result;
+        imagePreview.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.classList.add('hidden');
+    }
+  });
+}
 
 updateAuthUI();
 initNavigation();

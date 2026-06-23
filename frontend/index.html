@@ -38,7 +38,7 @@
             <button class="btn-primary" data-section="catalogo">Ver catálogo</button>
           </div>
           <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="Carro à venda" />
+            <img src="images/images.jpeg" alt="Carro à venda" />
           </div>
         </div>
       </section>
@@ -49,8 +49,8 @@
           <p>Todos os carros listados têm informações claras de ano, quilometragem e combustível.</p>
         </div>
         <div class="about-card">
-          <h3>Sem dependências</h3>
-          <p></p>
+          <h3>Descrição do app</h3>
+          <p>No Car Sell, transformar seu veículo em dinheiro no bolso é um processo simples, seguro e livre de burocracias.</p>
         </div>
         <div class="about-card">
           <h3>Vendo seu carro rápido</h3>
@@ -155,9 +155,12 @@
                 <input type="number" id="carPrice" placeholder="95000" min="0" required />
               </div>
               <div class="input-group">
-                <label for="carImage">URL da imagem</label>
-                <input type="url" id="carImage" placeholder="https://..." />
+                <label for="carImage">Foto do carro</label>
+                <input type="file" id="carImage" accept="image/*" required />
               </div>
+            </div>
+            <div class="image-preview-container">
+              <img id="imagePreview" src="" alt="Preview" class="image-preview hidden" />
             </div>
             <div class="input-group">
               <label for="carDescription">Descrição</label>

@@ -113,7 +113,7 @@ button {
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 70px 0;
+  padding: 50px 0;
 }
 
 .hero-grid {
@@ -178,7 +178,7 @@ button {
 .auth-section,
 .seller-section,
 .about-section {
-  padding: 36px 0;
+  padding: 28px 0;
 }
 
 .search-section {
@@ -251,7 +251,7 @@ textarea {
 
 .car-image {
   width: 100%;
-  height: 240px;
+  height: 160px;
   overflow: hidden;
 }
 
@@ -364,9 +364,44 @@ textarea {
   gap: 16px;
 }
 
+.input-group input[type="file"] {
+  padding: 10px;
+  background: #f7fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.input-group input[type="file"]:hover {
+  border-color: #2b6cb0;
+  background: #edf2f7;
+}
+
+.image-preview-container {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  object-fit: contain;
+}
+
 @media (min-width: 768px) {
+  .hero {
+    padding: 70px 0;
+  }
+
   .hero-grid {
     grid-template-columns: 1.2fr 1fr;
+  }
+
+  .car-image {
+    height: 240px;
   }
 
   .filters-form {

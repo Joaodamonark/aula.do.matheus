@@ -58,9 +58,12 @@
                 <input type="number" id="carPrice" placeholder="95000" min="0" required />
               </div>
               <div class="input-group">
-                <label for="carImage">URL da imagem</label>
-                <input type="url" id="carImage" placeholder="https://..." />
+                <label for="carImage">Foto do carro</label>
+                <input type="file" id="carImage" accept="image/*" required />
               </div>
+            </div>
+            <div class="image-preview-container">
+              <img id="imagePreview" src="" alt="Preview" class="image-preview hidden" />
             </div>
             <div class="input-group">
               <label for="carDescription">Descrição</label>
@@ -86,6 +89,23 @@
       // Envia o anúncio para o index via localStorage; index.js consome e publica
       const sellFormPage = document.getElementById('sellFormPage');
       const sellPageMessage = document.getElementById('sellPageMessage');
+      const carImageInput = document.getElementById('carImage');
+      const imagePreview = document.getElementById('imagePreview');
+
+      // Preview de imagem
+      carImageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            imagePreview.src = event.target.result;
+            imagePreview.classList.remove('hidden');
+          };
+          reader.readAsDataURL(file);
+        } else {
+          imagePreview.classList.add('hidden');
+        }
+      });
 
       sellFormPage.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -95,7 +115,7 @@
         const quilometragem = parseInt(document.getElementById('carMileage').value, 10);
         const combustivel = document.getElementById('carFuel').value.trim();
         const preco = parseFloat(document.getElementById('carPrice').value);
-        const imagem = document.getElementById('carImage').value.trim();
+        const imagemFile = carImageInput.files[0];
         const descricao = document.getElementById('carDescription').value.trim();
 
         if (!marca || !modelo || !ano || !quilometragem || !combustivel || !preco || !descricao) {
@@ -103,26 +123,37 @@
           return;
         }
 
-        const novoCarro = {
-          id: Date.now().toString(),
-          marca,
-          modelo,
-          ano,
-          quilometragem,
-          combustivel,
-          preco,
-          status: 'Disponível',
-          descricao,
-          imagem: imagem || 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
-          anunciante: JSON.parse(localStorage.getItem('carsellCurrentUser') || 'null')?.name || 'Anunciante',
+        if (!imagemFile) {
+          sellPageMessage.textContent = 'Selecione uma foto para o carro.';
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const imagemBase64 = event.target.result;
+
+          const novoCarro = {
+            id: Date.now().toString(),
+            marca,
+            modelo,
+            ano,
+            quilometragem,
+            combustivel,
+            preco,
+            status: 'Disponível',
+            descricao,
+            imagem: imagemBase64,
+            anunciante: JSON.parse(localStorage.getItem('carsellCurrentUser') || 'null')?.name || 'Anunciante',
+          };
+
+          const staged = JSON.parse(localStorage.getItem('carsellStagedCars') || '[]');
+          staged.push(novoCarro);
+          localStorage.setItem('carsellStagedCars', JSON.stringify(staged));
+
+          sellPageMessage.textContent = 'Anúncio salvo! Você será redirecionado.';
+          setTimeout(() => (window.location.href = 'index.html'), 900);
         };
-
-        const staged = JSON.parse(localStorage.getItem('carsellStagedCars') || '[]');
-        staged.push(novoCarro);
-        localStorage.setItem('carsellStagedCars', JSON.stringify(staged));
-
-        sellPageMessage.textContent = 'Anúncio salvo! Você será redirecionado.';
-        setTimeout(() => (window.location.href = 'index.html'), 900);
+        reader.readAsDataURL(imagemFile);
       });
     </script>
   </body>

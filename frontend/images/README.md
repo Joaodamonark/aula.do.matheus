@@ -1,9 +1,10 @@
 Coloque aqui as imagens usadas nos anúncios:
 
-- corolla.jpg  -> imagem do Toyota Corolla
-- civic.jpg    -> imagem do Honda Civic
-- tcross.jpg   -> imagem do Volkswagen T-Cross
-
+- corolla.jpg  -> (images.jpeg)
+- civic.jpg    -> (honda.jpeg)
+- tcross.jpg   -> (Volkswagen-T-Cross-750x450.jpg)
+- panameira.jpg-> (2022-porsche-panamera-platinum-edition.jpg)
+- Lamborghini  -> (Lamborghini_Aventador_Genf.jpg)
 Você pode:
 - Copiar os arquivos de imagem para esta pasta com esses nomes.
 - Ou substituir os caminhos em `frontend/app.js` para URLs externas.
